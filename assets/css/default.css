@@ -10,3 +10,27 @@ body {
 .navbar button {
     margin-right: 10px;
 }
+
+#h3-subtitulo{
+    margin-top: 12px;
+    margin-left: 30px;
+    color: gray;
+    font-size: small;
+}
+
+#moveis-subtitulo{
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Inter;
+}
+
+#h5-escritorio{
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+#h5-moveis{
+    font-size: 15px;
+}
