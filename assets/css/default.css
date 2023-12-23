@@ -11,6 +11,7 @@ body {
     margin-right: 10px;
 }
 
+
 #h3-subtitulo{
     margin-top: 12px;
     margin-left: 30px;
@@ -33,4 +34,8 @@ body {
 
 #h5-moveis{
     font-size: 15px;
+
+#menu{
+    border-radius: 30px;
+
 }
