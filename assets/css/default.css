@@ -10,3 +10,7 @@ body {
 .navbar button {
     margin-right: 10px;
 }
+
+#menu{
+    border-radius: 30px;
+}
