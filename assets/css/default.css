@@ -58,3 +58,12 @@ body {
     font-size: 24px; 
 
   }
+
+  .btn i.bi-handbag {
+    content: '\e900';
+    font-family: 'Bootstrap Icons'; 
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000; 
+    font-size: 19px; 
+
+  }
