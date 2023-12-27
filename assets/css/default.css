@@ -41,29 +41,41 @@ body {
 
 }
 
-.btn i.bi-heart {
+.custom-link i.bi-heart {
     content: '\e900';
     font-family: 'Bootstrap Icons'; 
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000; 
     font-size: 24px; 
-
+    color: black;
   }
 
-  .btn i.bi-person {
+  .custom-link i.bi-person {
     content: '\e900';
     font-family: 'Bootstrap Icons'; 
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000; 
     font-size: 24px; 
+    color: black;
 
   }
 
-  .btn i.bi-handbag {
+  .custom-link:focus{
+    border: none;
+    color: black;
+  }
+
+  .btn i.bi-heart:focus{
+    outline: none !important;
+    border: none; /* Add this line to reset the border as well */
+  }
+
+  .custom-link i.bi-handbag {
     content: '\e900';
     font-family: 'Bootstrap Icons'; 
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000; 
     font-size: 19px; 
+    color: black;
 
   }
