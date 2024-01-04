@@ -1,0 +1,49 @@
+if (mixer) {
+    toggleAnimationState(actionOpenDrawerLeft, intersectsGaveta_L);
+    toggleAnimationState(actionOpenDrawerRight, intersectsGaveta_R);
+    toggleAnimationState(actionOpenDoorLeft, intersectsPorta_L);
+    toggleAnimationState(actionOpenDoorRight, intersectsPorta_R);
+  }
+
+
+//reverses the animation
+function toggleAnimationState(action, intersects) {
+    if (intersects.length > 0 && action) {
+      if (!action.isRunning()) {
+        // If the animation is not running, toggle the direction and play
+        action.paused = false;
+        action.timeScale = action.timeScale === 1 ? -1 : 1;
+        action.play();
+      }
+    }
+  }
+
+
+
+// //stops the animation
+// function handleAnimationState(action, intersects, objectName) {
+//   if (intersects.length > 0 && action) {
+//     if (action.isRunning()) {
+//       // Animation is already in progress
+//     } else {
+//       // Reset and play the animation
+//       action.reset();
+//       action.play();
+
+//       // Set up an event listener for the end of the animation
+//       action.setLoop(THREE.LoopOnce);
+//       action.clampWhenFinished = true;
+//       action.paused = false;
+
+//       action.onLoopFinished = function (event) {
+//         // Animation has completed, update the flag
+//         window[`${objectName}Open`] = true;
+
+//         // Set a timeout to update the flag after a short delay
+//         setTimeout(() => {
+//           window[`${objectName}Open`] = false;
+//         }, 100); // Adjust the delay as needed
+//       };
+//     }
+//   }
+//}
