@@ -15,10 +15,27 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
     <!--Css-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+
     <link rel="stylesheet" href="/assets/css/default.css">
     <!--JavaScript-->
-    <script src="/scripts/script.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+
+    <script async src="/node_modules/unpkg.com_es-module-shims@1.8.0_dist_es-module-shims.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "/node_modules/three/build/three.module.js",
+        "three/addons/": "/node_modules/three/examples/jsm/"
+      }
+    }
+    </script>
+    <script type="module" src="/model/main2.js"></script>
 
 </head>
 
@@ -68,29 +85,29 @@
 
 
             <div
-                style="width: 100%; height: 100%; justify-content: center; align-items: center; display: inline-flex; position: absolute;">
+            style="width: 100%; height: 100%; justify-content: center; align-items: center; display: inline-flex; position: absolute;">
+            <div
+                style="width: 140.40px; top: 30px; height: 50px; position: relative; flex-direction: column; left: 820px; justify-content: flex-start; align-items: flex-start; display: flex">
+
+                <div style="width: 137.40px; height: 58.91px; background: #F6F7F9; border-radius: 53px"></div>
                 <div
-                    style="width: 140.40px; top: 25px; height: 50px; position: relative; flex-direction: column; left: 590px; justify-content: flex-start; align-items: flex-start; display: flex">
-
-                    <div style="width: 137.40px; height: 58.91px; background: #F6F7F9; border-radius: 53px"></div>
-                    <div
-                        style="width: 67.69px; height: 27.42px; right: 5px; left: 38px; top: 13px; color: black;font-size: 16px;font-family: Inter; font-weight: 800; position: absolute;">
-                        5 Items</div>
-                </div>
+                    style="width: 67.69px; height: 27.42px; right: 5px; left: 38px; top: 13px; color: black;font-size: 16px;font-family: Inter; font-weight: 800; position: absolute;">
+                    5 Items</div>
             </div>
-            <!--Top Icons-->
-            <!--Heart Icon-->
-            <button type="btn" and class="btn" and
-                style="width: 34.47px; height: 30.98px; left: 1460px; top: 4.5px; position: absolute;"><i
-                    class="bi bi-handbag"></i></button>
+        </div>
+        <!--Top Icons-->
+        <!--Heart Icon-->
+        <button type="btn" and class="btn" and
+            style="width: 34.47px; height: 30.98px; left: 1460px; top: 9.5px; position: absolute;"><i
+                class="bi bi-handbag"></i></button>
 
-            <button type="btn" and class="btn" and
-                style="width: 37.47px; height: 35.98px; left: 1390px; top: 4.5px; position: absolute; "><i
-                    class="bi bi-heart"></i></button>
-            <!--Person Icon-->
-            <button type="btn" and class="btn" and
-                style="width: 34.47px; height: 40px; left: 1250px; top: 4.5px; position: absolute;"><i
-                    class="bi bi-person"></i></button>
+        <button type="btn" and class="btn" and
+            style="width: 37.47px; height: 35.98px; left: 1390px; top: 9.5px; position: absolute; "><i
+                class="bi bi-heart"></i></button>
+        <!--Person Icon-->
+        <button type="btn" and class="btn" and
+            style="width: 34.47px; height: 40px; left: 1250px; top: 9.5px; position: absolute;"><i
+                class="bi bi-person"></i></button>
             <!--Name-->
             <div style="width: 123.15px; height: 27.54px; left: 1050px; top: 11.37px; position: absolute">
                 <div
@@ -122,10 +139,28 @@
         <div style="width: 1542px; height: 977px; left: 0px; top: 0px; background: white">
             <div style="width: 1440px; height: 748.70px; left: -43px; top: 186px; position: absolute">
                 <div
-                    style="width: 943px; height: 620px; left: -22px; top: 19px; position: absolute; background: white; border-radius: 6px">
-                    <!--Imagem para mexer as varias imagens-->
-                    <img style="width: 948px; height: 613px; left: 0px; top: 0px; position: absolute"
-                        src="/assets/img/product/product2.png" />
+                    style="width: 543px; height: 620px; left: 150px; top: 19px; position: absolute; background: white; border-radius: 6px">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-bs-pause="true">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="/assets/img/product/Product1.png" class="d-block w-100" alt="Imagem 1">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/assets/img/product/Product3.png" class="d-block w-100" alt="Imagem 2">
+                          </div>
+                          <div class="carousel-item" id="modelContainer1">
+                            <!-- Outro modelo 3D GLTF será carregado aqui -->
+                        </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Próximo</span>
+                        </a>
+                      </div>
                 </div>
                 <!--Nome do produto-->
                 <div
@@ -273,4 +308,5 @@
         </div>
     </footer>
 
-    <body>
+</body>
+</html>

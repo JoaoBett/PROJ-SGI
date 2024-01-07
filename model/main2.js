@@ -1,20 +1,32 @@
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import * as THREE from "three";
-document.getElementById('modelContainer1').appendChild(renderer.domElement);
 
 let cena = new THREE.Scene();
 let carregador = new GLTFLoader();
-let mixer; // variável para armazenar o mixer da animação
+let mixer; 
 let actionOpenDrawerLeft,
   actionOpenDrawerRight,
   actionOpenDoorLeft,
-  actionOpenDoorRight; // movemos estas variáveis para fora do escopo do bloco
+  actionOpenDoorRight; 
 
-carregador.load("vintageDesk.gltf", function (gltf) {
+// Criar um plano
+let geometry = new THREE.PlaneGeometry(10, 10);
+let material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
+let plano = new THREE.Mesh(geometry, material);
+
+// Adicione o plano à cena
+cena.add(plano);
+
+carregador.load("/model/vintageDesk.gltf", function (gltf) {
   cena.add(gltf.scene);
 
-  // Encontrar a animação pelo nome
+  let objeto3D = gltf.scene;
+
+  // Remova o fundo preto da cena
+  cena.background = null;
+
+  cena.add(objeto3D); // Adiciona o modelo à cena
   const clipeOpenDrawerLeft = THREE.AnimationClip.findByName(
     gltf.animations,
     "Drawer_RightOpen"
@@ -49,14 +61,9 @@ let camara = new THREE.PerspectiveCamera(
 camara.position.set(0, 2, 4);
 
 let renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+renderer.setSize(800, 600);
+modelContainer1.appendChild(renderer.domElement);
 
-let grelha = new THREE.GridHelper();
-cena.add(grelha);
-
-let eixos = new THREE.AxesHelper(3);
-cena.add(eixos);
 
 new OrbitControls(camara, renderer.domElement);
 
