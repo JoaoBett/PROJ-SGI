@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
     <!--Css-->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
+
 
     <link rel="stylesheet" href="/assets/css/default.css">
     <!--JavaScript-->
@@ -24,45 +23,25 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
 
-    <script async src="/node_modules/unpkg.com_es-module-shims@1.8.0_dist_es-module-shims.js"></script>
-    <script type="importmap">
-    {
-      "imports": {
-        "three": "/node_modules/three/build/three.module.js",
-        "three/addons/": "/node_modules/three/examples/jsm/"
-      }
-    }
-    </script>
-    <script type="module" src="/model/main2.js"></script>
     <script>
         function showImage(imageNumber) {
-          var imageContainer = document.getElementById('imageContainer');
-          var image = document.getElementById('image');
-      
-          //Display images
-          switch (imageNumber) {
-            case 1:
-              image.src = "/assets/img/product/Product1.png";
-              break;
-            case 2:
-              image.src = "/assets/img/product/Product3.png";
-              break;
-            case 3:
-              load3DModel();
-              break;
-          }
+            var imageContainer = document.getElementById('imageContainer');
+            var modelo3d = document.getElementById('modelContainer1');
+            var image = document.getElementById('image');
+            imageContainer.style.display = "block";
+            modelo3d.style.display = "none";
+            //Display images
+            switch (imageNumber) {
+                case 1:
+                    image.src = "/assets/img/product/Product1.png";
+                    break;
+                case 2:
+                    image.src = "/assets/img/product/Product3.png";
+                    break;
+            }
         }
-        //Function to load the 3DModel
-        function load3DModel() 
-        {
-            
-        }
-      </script>
-    <script type="module" src="./main2.js"></script>
-    <script src="./path/to/main2.js"></script>
-
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -75,7 +54,7 @@
       }
     }
     </script>
-    <script type="module" src="./main2.js"></script>
+    <script type="module" src="/model/main2.js"></script>
 
 </head>
 
@@ -125,29 +104,29 @@
 
 
             <div
-            style="width: 100%; height: 100%; justify-content: center; align-items: center; display: inline-flex; position: absolute;">
-            <div
-                style="width: 140.40px; top: 30px; height: 50px; position: relative; flex-direction: column; left: 820px; justify-content: flex-start; align-items: flex-start; display: flex">
-
-                <div style="width: 137.40px; height: 58.91px; background: #F6F7F9; border-radius: 53px"></div>
+                style="width: 100%; height: 100%; justify-content: center; align-items: center; display: inline-flex; position: absolute;">
                 <div
-                    style="width: 67.69px; height: 27.42px; right: 5px; left: 38px; top: 13px; color: black;font-size: 16px;font-family: Inter; font-weight: 800; position: absolute;">
-                    5 Items</div>
-            </div>
-        </div>
-        <!--Top Icons-->
-        <!--Heart Icon-->
-        <button type="btn" and class="btn" and
-            style="width: 34.47px; height: 30.98px; left: 1460px; top: 9.5px; position: absolute;"><i
-                class="bi bi-handbag"></i></button>
+                    style="width: 140.40px; top: 30px; height: 50px; position: relative; flex-direction: column; left: 820px; justify-content: flex-start; align-items: flex-start; display: flex">
 
-        <button type="btn" and class="btn" and
-            style="width: 37.47px; height: 35.98px; left: 1390px; top: 9.5px; position: absolute; "><i
-                class="bi bi-heart"></i></button>
-        <!--Person Icon-->
-        <button type="btn" and class="btn" and
-            style="width: 34.47px; height: 40px; left: 1250px; top: 9.5px; position: absolute;"><i
-                class="bi bi-person"></i></button>
+                    <div style="width: 137.40px; height: 58.91px; background: #F6F7F9; border-radius: 53px"></div>
+                    <div
+                        style="width: 67.69px; height: 27.42px; right: 5px; left: 38px; top: 13px; color: black;font-size: 16px;font-family: Inter; font-weight: 800; position: absolute;">
+                        5 Items</div>
+                </div>
+            </div>
+            <!--Top Icons-->
+            <!--Heart Icon-->
+            <button type="btn" and class="btn" and
+                style="width: 34.47px; height: 30.98px; left: 1460px; top: 9.5px; position: absolute;"><i
+                    class="bi bi-handbag"></i></button>
+
+            <button type="btn" and class="btn" and
+                style="width: 37.47px; height: 35.98px; left: 1390px; top: 9.5px; position: absolute; "><i
+                    class="bi bi-heart"></i></button>
+            <!--Person Icon-->
+            <button type="btn" and class="btn" and
+                style="width: 34.47px; height: 40px; left: 1250px; top: 9.5px; position: absolute;"><i
+                    class="bi bi-person"></i></button>
             <!--Name-->
             <div style="width: 123.15px; height: 27.54px; left: 1050px; top: 11.37px; position: absolute">
                 <div
@@ -179,15 +158,18 @@
     <section>
         <div style="width: 1542px; height: 977px; left: 0px; top: 0px; background: white">
             <div style="width: 1440px; height: 748.70px; left: -43px; top: 186px; position: absolute">
-                <div id="imageContainer" style="width: 543px; height: 620px; left: 150px; top: 19px; position: absolute; background: white; border-radius: 6px;">
+                <div id="imageContainer"
+                    style="width: 543px; height: 620px; left: 150px; top: 19px; position: absolute; background: white; border-radius: 6px;">
                     <img id="image" src="/assets/img/product/Product1.png" class="d-block w-100" alt="Imagem 1">
                 </div>
                 <!--Buttons for mgs-->
                 <div class="btn-group" role="group" style="position: absolute; top: 600px; left: 275px;">
                     <button type="button" class="btn btn-light" onclick="showImage(1)">Image 1</button>
                     <button type="button" class="btn btn-light" onclick="showImage(2)">Image 2</button>
-                    <button type="button" class="btn btn-light" onclick="load3DModel()">3D Model</button>
-                  </div>
+                    <button type="button" id="teste" class="btn btn-light" >3D Model</button>
+                </div>
+                <div id="modelContainer1" style="width: 800px; height: 600px;"></div>
+
                 <!--Nome do produto-->
                 <div
                     style="width: 480px; height: 748.70px; padding-top: 48px; padding-bottom: 648.70px; padding-left: 46.33px; padding-right: 46.55px; left: 804px; top: 0px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
@@ -249,7 +231,8 @@
                         style="padding-top: 10px; padding-bottom: 13px; padding-left: 9.73px; padding-right: 12.27px; background: #6C757D; border-radius: 21.50px; border: 1px #6C757D solid; justify-content: center; align-items: center; display: inline-flex">
                         <div
                             style="text-align: center; color: white; font-size: 18.20px; font-family: Font Awesome 5 Free; font-weight: 900; line-height: 19.20px; word-wrap: break-word">
-                            <i class="bi bi-cart"></i></div>
+                            <i class="bi bi-cart"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,7 +258,8 @@
                         style="padding-top: 10px; padding-bottom: 13px; padding-left: 9.73px; padding-right: 12.27px; background: #6C757D; border-radius: 21.50px; border: 1px #6C757D solid; justify-content: center; align-items: center; display: inline-flex">
                         <div
                             style="text-align: center; color: white; font-size: 18.20px; font-family: Font Awesome 5 Free; font-weight: 900; line-height: 19.20px; word-wrap: break-word">
-                            <i class="bi bi-cart"></i></div>
+                            <i class="bi bi-cart"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -335,4 +319,5 @@
     </footer>
 
 </body>
+
 </html>

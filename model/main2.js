@@ -4,27 +4,25 @@ import * as THREE from "three";
 
 let cena = new THREE.Scene();
 let carregador = new GLTFLoader();
-let mixer; 
+let mixer;
 let actionOpenDrawerLeft,
   actionOpenDrawerRight,
   actionOpenDoorLeft,
-  actionOpenDoorRight; 
+  actionOpenDoorRight;
 
 // Criar um plano
 let geometry = new THREE.PlaneGeometry(10, 10);
-let material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
+let material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0   });
 let plano = new THREE.Mesh(geometry, material);
 
 // Adicione o plano à cena
 cena.add(plano);
 
-carregador.load("/model/vintageDesk.gltf", function (gltf) {
+carregador.load("/model/modelo/vintageDesk.gltf", function (gltf) {
   cena.add(gltf.scene);
 
   let objeto3D = gltf.scene;
-
-  // Remova o fundo preto da cena
-  cena.background = null;
+  cena.background = new THREE.Color(0xffffff); 
 
   cena.add(objeto3D); // Adiciona o modelo à cena
   const clipeOpenDrawerLeft = THREE.AnimationClip.findByName(
@@ -53,18 +51,33 @@ carregador.load("/model/vintageDesk.gltf", function (gltf) {
 });
 
 let camara = new THREE.PerspectiveCamera(
-  50,
+  20,
   window.innerWidth / window.innerHeight,
-  0.01,
-  1000
+  0.10,
+  2000
 );
-camara.position.set(0, 2, 4);
+camara.position.set(1, 6, 6);
 
 let renderer = new THREE.WebGLRenderer();
 renderer.setSize(800, 600);
-modelContainer1.appendChild(renderer.domElement);
 
+document.addEventListener("DOMContentLoaded", function () {
+  const btnTeste = document.getElementById("teste");
+  const modelContainer1 = document.getElementById("modelContainer1");
 
+  if (btnTeste) {
+    btnTeste.addEventListener("click", function () {
+      // Esconde as imagens
+      const image1 = document.getElementById("imageContainer");
+
+      if (image1) {
+        image1.style.display = "none";
+      }
+      modelContainer1.style.display = "block";
+      modelContainer1.appendChild(renderer.domElement);
+    });
+  }
+});
 new OrbitControls(camara, renderer.domElement);
 
 let delta = 0;
@@ -87,40 +100,38 @@ function animar() {
 }
 
 let abrindo = {
-    'Gaveta_L': false,
-    'Gaveta_R': false,
-    'Porta_L': false,
-    'Porta_R': false
-  }; // Armazena o estado de abertura dos objetos
-  
-  function toggleAnimationState(action, intersects, objeto) {
-    if (intersects.length > 0 && action) {
-      const objetoAberto = abrindo[objeto];
-  
-      if (!objetoAberto) {
-        action.paused = false;
-        action.reset();
-        action.clampWhenFinished = true;
-        action.loop = THREE.LoopOnce;
-        action.timeScale = 1;
-        action.play();
-        abrindo[objeto] = true;
-  
-        if (!action._listeners.finished) {
-          action._listeners.finished = function () {
-            abrindo[objeto] = false;
-          };
-        }
-      } else {
-        action.paused = false;
-        action.timeScale = -1;
-        action.play();
-        abrindo[objeto] = false;
+  Gaveta_L: false,
+  Gaveta_R: false,
+  Porta_L: false,
+  Porta_R: false,
+}; // Armazena o estado de abertura dos objetos
+
+function toggleAnimationState(action, intersects, objeto) {
+  if (intersects.length > 0 && action) {
+    const objetoAberto = abrindo[objeto];
+
+    if (!objetoAberto) {
+      action.paused = false;
+      action.reset();
+      action.clampWhenFinished = true;
+      action.loop = THREE.LoopOnce;
+      action.timeScale = 1;
+      action.play();
+      abrindo[objeto] = true;
+
+      if (!action._listeners.finished) {
+        action._listeners.finished = function () {
+          abrindo[objeto] = false;
+        };
       }
+    } else {
+      action.paused = false;
+      action.timeScale = -1;
+      action.play();
+      abrindo[objeto] = false;
     }
   }
-  
-  
+}
 
 function checkAnimationStatus() {
   for (const objeto in abrindo) {
@@ -173,10 +184,10 @@ function onClick(event) {
   var intersectsPorta_R = raycaster.intersectObject(porta_R, true);
 
   if (mixer) {
-    toggleAnimationState(actionOpenDrawerLeft, intersectsGaveta_L, 'Gaveta_L');
-    toggleAnimationState(actionOpenDrawerRight, intersectsGaveta_R, 'Gaveta_R');
-    toggleAnimationState(actionOpenDoorLeft, intersectsPorta_L, 'Porta_L');
-    toggleAnimationState(actionOpenDoorRight, intersectsPorta_R, 'Porta_R');
+    toggleAnimationState(actionOpenDrawerLeft, intersectsGaveta_L, "Gaveta_L");
+    toggleAnimationState(actionOpenDrawerRight, intersectsGaveta_R, "Gaveta_R");
+    toggleAnimationState(actionOpenDoorLeft, intersectsPorta_L, "Porta_L");
+    toggleAnimationState(actionOpenDoorRight, intersectsPorta_R, "Porta_R");
   }
 }
 
