@@ -1,119 +1,152 @@
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import * as THREE from "three";
-document.getElementById('modelContainer1').appendChild(renderer.domElement);
 
 let cena = new THREE.Scene();
 let carregador = new GLTFLoader();
-let mixer; // variável para armazenar o mixer da animação
+let mixer;
 let actionOpenDrawerLeft,
   actionOpenDrawerRight,
   actionOpenDoorLeft,
-  actionOpenDoorRight; // movemos estas variáveis para fora do escopo do bloco
+  actionOpenDoorRight;
 
-carregador.load("vintageDesk.gltf", function (gltf) {
-  cena.add(gltf.scene);
+// Criar um plano
+let geometry = new THREE.PlaneGeometry(10, 20);
+let material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
+let plano = new THREE.Mesh(geometry, material);
 
-  // Encontrar a animação pelo nome
-  const clipeOpenDrawerLeft = THREE.AnimationClip.findByName(
-    gltf.animations,
-    "Drawer_RightOpen"
-  );
-  const clipeOpenDrawerRight = THREE.AnimationClip.findByName(
-    gltf.animations,
-    "Drawer_LeftOpen"
-  );
-  const clipeOpenDoorRight = THREE.AnimationClip.findByName(
-    gltf.animations,
-    "Door_LeftOpen"
-  );
-  const clipeOpenDoorLeft = THREE.AnimationClip.findByName(
-    gltf.animations,
-    "Door_RightOpen"
-  );
-
-  // Criar mixer e controladores de animação
-  mixer = new THREE.AnimationMixer(gltf.scene);
-  actionOpenDrawerLeft = mixer.clipAction(clipeOpenDrawerLeft);
-  actionOpenDrawerRight = mixer.clipAction(clipeOpenDrawerRight);
-  actionOpenDoorLeft = mixer.clipAction(clipeOpenDoorLeft);
-  actionOpenDoorRight = mixer.clipAction(clipeOpenDoorRight);
-});
+// Adicionar o plano à cena
+cena.add(plano);
 
 let camara = new THREE.PerspectiveCamera(
-  50,
+  20,
   window.innerWidth / window.innerHeight,
-  0.01,
-  1000
+  0.10,
+  2000
 );
-camara.position.set(0, 2, 4);
+camara.position.set(0, 8, 3);
 
 let renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+renderer.setSize(900, 800);
 
-let grelha = new THREE.GridHelper();
-cena.add(grelha);
 
-let eixos = new THREE.AxesHelper(3);
-cena.add(eixos);
+document.addEventListener("DOMContentLoaded", function () {
+  const modelContainer1 = document.getElementById("modelContainer1");
 
-new OrbitControls(camara, renderer.domElement);
-
-let delta = 0;
-let relogio = new THREE.Clock();
-let latencia_minima = 1 / 60;
-
-function animar() {
-  requestAnimationFrame(animar);
-  delta += relogio.getDelta();
-
-  if (delta < latencia_minima) return;
-
-  if (mixer) {
-    mixer.update(latencia_minima); // Atualizar o mixer
-    checkAnimationStatus(); // Verificar o status das animações em processo
-  }
-
-  renderer.render(cena, camara);
-  delta = delta % latencia_minima;
-}
-
-let abrindo = {
-    'Gaveta_L': false,
-    'Gaveta_R': false,
-    'Porta_L': false,
-    'Porta_R': false
-  }; // Armazena o estado de abertura dos objetos
-  
-  function toggleAnimationState(action, intersects, objeto) {
-    if (intersects.length > 0 && action) {
-      const objetoAberto = abrindo[objeto];
-  
-      if (!objetoAberto) {
-        action.paused = false;
-        action.reset();
-        action.clampWhenFinished = true;
-        action.loop = THREE.LoopOnce;
-        action.timeScale = 1;
-        action.play();
-        abrindo[objeto] = true;
-  
-        if (!action._listeners.finished) {
-          action._listeners.finished = function () {
-            abrindo[objeto] = false;
-          };
-        }
-      } else {
-        action.paused = false;
-        action.timeScale = -1;
-        action.play();
-        abrindo[objeto] = false;
-      }
+  function hideImages() {
+    const imageContainer = document.getElementById('imageContainer');
+    if (imageContainer) {
+      imageContainer.style.display = 'none';
     }
   }
   
+  function loadModel(modelURL) {
+    carregador.load(modelURL, function(gltf) {
+      cena.add(gltf.scene);
+      modelContainer1.appendChild(renderer.domElement);
+      cena.background = new THREE.Color(0xffffff); 
+    });
+  }
   
+  function loadModelByOption(option) {
+    hideImages();
+    modelContainer1.style.display = 'block';
+    modelContainer1.innerHTML = '';
+    
+    switch (option) {
+      case 'default':
+        loadModel('/model/modelo/vintageDesk.gltf');
+        break;
+      case 'option1':
+        loadModel('/model/ModeloBrown/vintageDesk.gltf');
+        break;
+      case 'option2':
+        loadModel('/model/ModeloGray/vintageDesk.gltf');
+        break;
+      default:
+        break;
+    }
+  }
+  
+  const btnDefault = document.getElementById("default");
+  const btnOption1 = document.getElementById("option1");
+  const btnOption2 = document.getElementById("option2");
+  
+  if (btnDefault) {
+    btnDefault.addEventListener('click', function() {
+      loadModelByOption('default');
+    });
+  }
+  
+  if (btnOption1) {
+    btnOption1.addEventListener('click', function() {
+      loadModelByOption('option1');
+    });
+  }
+  
+  if (btnOption2) {
+    btnOption2.addEventListener('click', function() {
+      loadModelByOption('option2');
+    });
+  }
+
+
+
+  new OrbitControls(camara, renderer.domElement);
+
+  let delta = 0;
+  let relogio = new THREE.Clock();
+  let latencia_minima = 1 / 60;
+
+  function animar() {
+    requestAnimationFrame(animar);
+    delta += relogio.getDelta();
+
+    if (delta < latencia_minima) return;
+
+    if (mixer) {
+      mixer.update(latencia_minima);
+      checkAnimationStatus();
+    }
+
+    renderer.render(cena, camara);
+    delta = delta % latencia_minima;
+  }
+
+
+let abrindo = {
+  Gaveta_L: false,
+  Gaveta_R: false,
+  Porta_L: false,
+  Porta_R: false,
+}; // Armazena o estado de abertura dos objetos
+
+function toggleAnimationState(action, intersects, objeto) {
+  if (intersects.length > 0 && action) {
+    const objetoAberto = abrindo[objeto];
+
+    if (!objetoAberto) {
+      action.paused = false;
+      action.reset();
+      action.clampWhenFinished = true;
+      action.loop = THREE.LoopOnce;
+      action.timeScale = 1;
+      action.play();
+      abrindo[objeto] = true;
+
+      if (!action._listeners.finished) {
+        action._listeners.finished = function () {
+          abrindo[objeto] = false;
+        };
+      }
+    } else {
+      action.paused = false;
+      action.timeScale = -1;
+      action.play();
+      abrindo[objeto] = false;
+    }
+  }
+}
 
 function checkAnimationStatus() {
   for (const objeto in abrindo) {
@@ -130,48 +163,15 @@ function luzes(cena) {
 
   const luzPonto = new THREE.PointLight("white");
   luzPonto.position.set(0, 2, 2);
-  luzPonto.intensity = 15;
+  luzPonto.intensity = 5;
   cena.add(luzPonto);
 
   const luzDirecional = new THREE.DirectionalLight("white");
   luzDirecional.position.set(3, 2, 0);
-  luzDirecional.intensity = 30;
+  luzDirecional.intensity = 5;
   cena.add(luzDirecional);
-}
-
-var raycaster = new THREE.Raycaster();
-var mouse = new THREE.Vector2();
-let objetosAbertos = {}; // Armazena o estado dos objetos abertos
-
-window.addEventListener("click", onClick);
-
-function onClick(event) {
-  // Calcula as coordenadas normalizadas do mouse
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-  // Atualiza o raycaster
-  raycaster.setFromCamera(mouse, camara);
-
-  // Encontrar os objetos desejados pelos nomes
-  const gaveta_L = cena.getObjectByName("Gaveta_L");
-  const gaveta_R = cena.getObjectByName("Gaveta_R");
-  const porta_L = cena.getObjectByName("Porta_L");
-  const porta_R = cena.getObjectByName("Porta_R");
-
-  // Verifica a interseção entre o raio e os objetos específicos
-  var intersectsGaveta_L = raycaster.intersectObject(gaveta_L, true);
-  var intersectsGaveta_R = raycaster.intersectObject(gaveta_R, true);
-  var intersectsPorta_L = raycaster.intersectObject(porta_L, true);
-  var intersectsPorta_R = raycaster.intersectObject(porta_R, true);
-
-  if (mixer) {
-    toggleAnimationState(actionOpenDrawerLeft, intersectsGaveta_L, 'Gaveta_L');
-    toggleAnimationState(actionOpenDrawerRight, intersectsGaveta_R, 'Gaveta_R');
-    toggleAnimationState(actionOpenDoorLeft, intersectsPorta_L, 'Porta_L');
-    toggleAnimationState(actionOpenDoorRight, intersectsPorta_R, 'Porta_R');
-  }
 }
 
 luzes(cena);
 animar();
+});

@@ -18,7 +18,7 @@ let plano = new THREE.Mesh(geometry, material);
 // Adicione o plano à cena
 cena.add(plano);
 
-carregador.load("/model/modelo/vintageDesk.gltf", function (gltf) {
+carregador.load("/model/ModeloGray/vintageDesk.gltf", function (gltf) {
   cena.add(gltf.scene);
 
   let objeto3D = gltf.scene;
@@ -56,17 +56,18 @@ let camara = new THREE.PerspectiveCamera(
   0.10,
   2000
 );
-camara.position.set(1, 6, 6);
+camara.position.set(2, 4, 9);
+
 
 let renderer = new THREE.WebGLRenderer();
-renderer.setSize(800, 600);
+renderer.setSize(1000, 800);
 
 document.addEventListener("DOMContentLoaded", function () {
-  const btnTeste = document.getElementById("teste");
+  const btnOption1 = document.getElementById("option1");
   const modelContainer1 = document.getElementById("modelContainer1");
 
-  if (btnTeste) {
-    btnTeste.addEventListener("click", function () {
+  if (btnOption1) {
+    btnOption1.addEventListener("click", function () {
       // Esconde as imagens
       const image1 = document.getElementById("imageContainer");
 
@@ -77,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       modelContainer1.appendChild(renderer.domElement);
     });
   }
+
 });
 new OrbitControls(camara, renderer.domElement);
 
