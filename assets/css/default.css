@@ -1,95 +1,147 @@
 body {
-    font-family: Inter;
+  font-family: Inter;
 }
+
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
+
 .navbar button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 
-#h3-subtitulo{
-    margin-top: 160px;
-    margin-left: 30px;
-    color: gray;
-    font-size: small;
+#h3-subtitulo {
+  margin-top: 160px;
+  margin-left: 30px;
+  color: gray;
+  font-size: small;
 }
 
-#moveis-subtitulo{
-    margin-top: 15px;
-    margin-left: 30px;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: Inter;
+#moveis-subtitulo {
+  margin-top: 15px;
+  margin-left: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Inter;
 }
 
-#h5-escritorio{
-    margin-top: 12px;
-    font-size: 15px;
+#h5-escritorio {
+  margin-top: 12px;
+  font-size: 15px;
 }
 
-#h5-moveis{
-    font-size: 15px;
+#h5-moveis {
+  font-size: 15px;
 }
 
-#menu{
-    border-radius: 30px;
+#menu {
+  border-radius: 30px;
 
 }
 
 .custom-link i.bi-heart {
-    content: '\e900';
-    font-family: 'Bootstrap Icons'; 
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000; 
-    font-size: 24px; 
-    color: black;
-  }
+  content: '\e900';
+  font-family: 'Bootstrap Icons';
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  font-size: 24px;
+  color: black;
+}
 
-  .custom-link i.bi-person {
-    content: '\e900';
-    font-family: 'Bootstrap Icons'; 
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000; 
-    font-size: 24px; 
-    color: black;
+.custom-link i.bi-person {
+  content: '\e900';
+  font-family: 'Bootstrap Icons';
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  font-size: 24px;
+  color: black;
 
-  }
+}
 
-  .custom-link:focus{
-    border: none;
-    color: black;
-  }
+.custom-link:focus {
+  border: none;
+  color: black;
+}
 
-  .btn i.bi-heart:focus{
-    outline: none !important;
-    border: none; /* Add this line to reset the border as well */
-  }
+.btn i.bi-heart:focus {
+  outline: none !important;
+  border: none;
+  /* Add this line to reset the border as well */
+}
 
-  .custom-link i.bi-handbag {
-    content: '\e900';
-    font-family: 'Bootstrap Icons'; 
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000; 
-    font-size: 19px; 
-    color: black;
+.custom-link i.bi-handbag {
+  content: '\e900';
+  font-family: 'Bootstrap Icons';
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  font-size: 19px;
+  color: black;
 
-  }
-    /* Estilos para o ícone das setas do carrossel */
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-      background-color: black; /* Define a cor do ícone como preto */
-    }
-    .carousel-control-prev, .carousel-control-next {
-      color: black; /* Define a cor dos botões como preto */
-    } 
-    #modelContainer1 {
-      width: 100%;
-      height: 1000px; 
-      width: 1000px;/* Altura desejada para o modelo 3D */
+}
 
-    }
+/* Estilos para o ícone das setas do carrossel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black;
+  /* Define a cor do ícone como preto */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  color: black;
+  /* Define a cor dos botões como preto */
+}
+
+#modelContainer1 {
+  width: 100%;
+  height: 1000px;
+  width: 1000px;
+  /* Altura desejada para o modelo 3D */
+
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  display: block;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
